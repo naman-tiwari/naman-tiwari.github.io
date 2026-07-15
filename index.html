@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naman Tiwari — Software Engineer</title>
+<meta name="description" content="Software engineer in Bengaluru building production-style services — APIs, CI/CD, monitoring — and verifying they actually work. Available immediately, remote-ready.">
+<meta property="og:title" content="Naman Tiwari — Software Engineer">
+<meta property="og:description" content="I build software that actually works.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16233F; --navy-deep:#0B1226; --navy-mid:#101B36;
+    --teal:#12A5A3; --teal-deep:#0E7C7B; --teal-glow:rgba(18,165,163,.35);
+    --verified:#2BC17C;
+    --paper:#F7F9FB; --ink:#1B2029; --slate:#3E434C; --muted:#6A7079;
+    --hair:#E2E7EC; --card:#FFFFFF;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --disp:'Archivo',sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;overflow-x:hidden}
+  ::selection{background:var(--teal);color:#fff}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ── Scroll progress ── */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--teal),var(--verified));z-index:100}
+
+  /* ── Nav ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .25s,box-shadow .25s}
+  nav.solid{background:rgba(11,18,38,.85);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:var(--mono);font-weight:600;font-size:15px;color:#fff;text-decoration:none}
+  .logo .tld{color:var(--teal)}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.72);text-decoration:none;transition:color .15s}
+  .nav-links a:hover{color:#fff}
+
+  /* ── Hero (dark, animated) ── */
+  .hero{position:relative;background:radial-gradient(1100px 600px at 78% -10%, #14294F 0%, transparent 55%),var(--navy-deep);color:#fff;padding:150px 0 96px;overflow:hidden}
+  .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+  .orb-a{width:420px;height:420px;background:var(--teal-glow);top:-120px;right:-80px;animation:drift 14s ease-in-out infinite alternate}
+  .orb-b{width:300px;height:300px;background:rgba(43,193,124,.18);bottom:-140px;left:-60px;animation:drift 18s ease-in-out infinite alternate-reverse}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,30px) scale(1.12)}}
+  .grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(720px 480px at 30% 20%,#000 30%,transparent 75%);pointer-events:none}
+
+  .kicker{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+  .pulse{width:8px;height:8px;border-radius:50%;background:var(--verified);box-shadow:0 0 0 0 rgba(43,193,124,.7);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(43,193,124,0)}100%{box-shadow:0 0 0 0 rgba(43,193,124,0)}}
+  h1{font-family:var(--disp);font-weight:900;font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin-bottom:22px}
+  h1 .accent{background:linear-gradient(92deg,var(--teal) 10%,var(--verified) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:1.14rem;color:rgba(255,255,255,.72);max-width:600px;margin-bottom:36px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:60px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:600;font-size:15px;padding:13px 24px;border-radius:10px;text-decoration:none;transition:transform .15s,box-shadow .2s;cursor:pointer;border:none}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(92deg,var(--teal),var(--teal-deep));color:#fff;box-shadow:0 6px 22px -6px var(--teal-glow)}
+  .btn-primary:hover{box-shadow:0 10px 30px -6px var(--teal-glow)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.22);color:#fff;background:rgba(255,255,255,.05)}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+  /* ── Interactive terminal ── */
+  .term{position:relative;background:#0A0F1F;border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 32px 70px -24px rgba(0,0,0,.65),0 0 0 1px rgba(18,165,163,.12);overflow:hidden;max-width:780px}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .dot:nth-child(1){background:#F26D6D}.dot:nth-child(2){background:#F2C46D}.dot:nth-child(3){background:#5EC98A}
+  .term-title{margin-left:8px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.4)}
+  .term-hint{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--teal);opacity:.85}
+  .term-body{padding:20px 22px 22px;font-family:var(--mono);font-size:13.5px;line-height:1.85;height:250px;overflow-y:auto;cursor:text}
+  .term-body::-webkit-scrollbar{width:8px}
+  .term-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:8px}
+  .t-prompt{color:#63D6D4}
+  .t-cmd{color:#EDEFF3}
+  .t-dim{color:#7E8899}
+  .t-run{color:#F2C46D}
+  .t-ok{color:#4EE29B;font-weight:600}
+  .t-err{color:#F28B8B}
+  .t-link{color:#63D6D4;text-decoration:underline;cursor:pointer}
+  .cursor{display:inline-block;width:8px;height:16px;background:#63D6D4;vertical-align:-2px;animation:blink 1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  #tinput{position:absolute;opacity:0;pointer-events:none}
+
+  /* ── Stats strip ── */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:780px;margin-top:26px}
+  .stat{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 20px;transition:border-color .2s,transform .2s}
+  .stat:hover{border-color:var(--teal);transform:translateY(-2px)}
+  .stat-num{font-family:var(--disp);font-weight:800;font-size:2rem;color:#fff;line-height:1}
+  .stat-num .u{color:var(--teal);font-size:1.1rem;font-weight:700}
+  .stat-lab{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:6px}
+
+  /* ── Sections ── */
+  section{padding:84px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:40px}
+  .sec-mark{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--teal-deep)}
+  h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,3.4vw,2.2rem);letter-spacing:-.015em;color:var(--navy)}
+
+  /* ── How I work ── */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .flow-step{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:26px 22px;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .flow-step:hover{transform:translateY(-4px);box-shadow:0 16px 34px -18px rgba(22,35,63,.28);border-color:var(--teal)}
+  .flow-num{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--teal);opacity:.28;position:absolute;top:14px;right:18px}
+  .flow-verb{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:10px}
+  .flow-step:last-child .flow-verb{color:var(--verified)}
+  .flow-step h3{font-family:var(--disp);font-weight:600;font-size:1.02rem;color:var(--navy);margin-bottom:8px}
+  .flow-step p{font-size:.9rem;color:var(--muted)}
+
+  /* ── Projects (tilt cards) ── */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .proj{background:var(--card);border:1px solid var(--hair);border-radius:16px;padding:26px;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;transform-style:preserve-3d;will-change:transform}
+  .proj:hover{box-shadow:0 22px 46px -20px rgba(22,35,63,.32);border-color:var(--teal)}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:10px}
+  .proj h3{font-family:var(--disp);font-weight:700;font-size:1.1rem;color:var(--navy)}
+  .ci-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--verified);background:#E8F7EF;padding:4px 10px;border-radius:20px;white-space:nowrap}
+  .proj p{font-size:.92rem;color:var(--slate);flex:1;margin-bottom:16px}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--hair);padding:3px 9px;border-radius:6px}
+  .proj-link{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--teal-deep);text-decoration:none}
+  .proj-link:hover{text-decoration:underline}
+
+  /* ── Experience ── */
+  .xp{border-left:2px solid var(--hair);padding-left:28px;display:flex;flex-direction:column;gap:34px;max-width:760px}
+  .xp-item{position:relative}
+  .xp-item::before{content:'';position:absolute;left:-35px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid var(--paper);box-shadow:0 0 0 3px rgba(18,165,163,.18)}
+  .xp-when{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-bottom:4px}
+  .xp-item h3{font-family:var(--disp);font-weight:700;font-size:1.08rem;color:var(--navy)}
+  .xp-org{font-size:.95rem;color:var(--teal-deep);font-weight:500;margin-bottom:8px}
+  .xp-item p{font-size:.93rem;color:var(--slate);max-width:640px}
+
+  /* ── Toolbox ── */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .skill{background:linear-gradient(150deg,#EAF5F5,#F2F8F8);border:1px solid #D8ECEC;border-radius:14px;padding:22px;transition:transform .2s,box-shadow .2s}
+  .skill:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(14,124,123,.35)}
+  .skill h3{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:10px}
+  .skill p{font-size:.9rem;color:var(--slate)}
+
+  /* ── Contact ── */
+  .contact{position:relative;background:radial-gradient(600px 300px at 80% 0%,#1A2E58 0%,transparent 60%),var(--navy);border-radius:22px;padding:64px 48px;color:#fff;text-align:center;overflow:hidden}
+  .contact h2{color:#fff;margin-bottom:12px}
+  .contact p{color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 30px}
+  .contact-links{display:flex;gap:22px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .contact-links a{font-family:var(--mono);font-size:13.5px;color:rgba(255,255,255,.78);text-decoration:none}
+  .contact-links a:hover{color:#fff;text-decoration:underline}
+
+  footer{padding:36px 0;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:880px){.flow{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr 1fr;gap:12px}.stat-num{font-size:1.5rem}}
+  @media(max-width:640px){
+    .nav-links{display:none}
+    .hero{padding:110px 0 64px}
+    section{padding:56px 0}
+    .flow{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr;max-width:420px}
+    .contact{padding:44px 24px}
+    .term-hint{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .orb{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">naman<span class="tld">.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">How I work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="grid-lines"></div>
+  <div class="wrap" style="position:relative">
+    <p class="kicker"><span class="pulse"></span>Software Engineer · Bengaluru / Remote · Available now</p>
+    <h1>I build software that <span class="accent">actually works.</span></h1>
+    <p class="lede">I'm Naman Tiwari — an engineer who ships production-style services fast, then tests them the way production breaks them. APIs, CI/CD pipelines, monitoring, and the judgment to tell <em>working</em> from <em>looks-like-working</em>.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">See what I've shipped</a>
+      <a class="btn btn-ghost" href="https://github.com/naman-tiwari" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <div class="term" id="termbox">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-title">naman@dev — portfolio</span>
+        <span class="term-hint">⌨ click &amp; type <b>help</b></span>
+      </div>
+      <div class="term-body" id="term" tabindex="0" role="application" aria-label="Interactive terminal. Click and type help to explore Naman's portfolio via commands."></div>
+      <input id="tinput" autocomplete="off" aria-hidden="true">
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num"><span data-count="3">0</span></div><div class="stat-lab">services shipped</div></div>
+      <div class="stat"><div class="stat-num"><span data-count="17">0</span></div><div class="stat-lab">automated tests, all green</div></div>
+      <div class="stat"><div class="stat-num"><span data-count="0">0</span><span class="u"> breaches</span></div><div class="stat-lab">SLA record in production</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="work" class="wrap">
+    <div class="sec-head reveal"><span class="sec-mark">§1</span><h2>How I work</h2></div>
+    <div class="flow">
+      <div class="flow-step reveal"><span class="flow-num">1</span>
+        <div class="flow-verb">Understand</div>
+        <h3>Read the spec like a builder</h3>
+        <p>What must it do, what could break, and what does "done" actually mean.</p>
+      </div>
+      <div class="flow-step reveal"><span class="flow-num">2</span>
+        <div class="flow-verb">Build</div>
+        <h3>Ship fast with modern leverage</h3>
+        <p>APIs, containers, pipelines — built quickly using the best tools available, AI included.</p>
+      </div>
+      <div class="flow-step reveal"><span class="flow-num">3</span>
+        <div class="flow-verb">Test</div>
+        <h3>Break it on purpose</h3>
+        <p>Failure paths, edge cases, slow responses — the places where software quietly lies.</p>
+      </div>
+      <div class="flow-step reveal"><span class="flow-num">4</span>
+        <div class="flow-verb">✓ Ship</div>
+        <h3>Verify end to end</h3>
+        <p>Green CI, health checks, logs that tell the truth. Then — and only then — it ships.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="sec-head reveal"><span class="sec-mark">§2</span><h2>Things I've shipped</h2></div>
+    <div class="proj-grid">
+      <article class="proj reveal" data-tilt>
+        <div class="proj-top"><h3>Incident Tracker API</h3><span class="ci-badge">✓ CI passing</span></div>
+        <p>Production-style REST API with health &amp; readiness probes, structured JSON logging with request tracing, Prometheus metrics, a multi-stage non-root Docker build, and a CI pipeline that tests and smoke-tests the image on every push.</p>
+        <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">pytest ×8</span></div>
+        <a class="proj-link" href="https://github.com/naman-tiwari/incident-tracker-api" target="_blank" rel="noopener">github.com/naman-tiwari/incident-tracker-api →</a>
+      </article>
+      <article class="proj reveal" data-tilt>
+        <div class="proj-top"><h3>logtriage</h3><span class="ci-badge">✓ CI passing</span></div>
+        <p>CLI that reads application logs and triages what's actually wrong — fingerprints and groups similar errors, computes error rate, identifies failing services, and emits an escalate / investigate / monitor verdict. Exits non-zero for CI and cron alerting.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">zero runtime deps</span><span class="tag">pytest ×5</span></div>
+        <a class="proj-link" href="https://github.com/naman-tiwari/log-triage-tool" target="_blank" rel="noopener">github.com/naman-tiwari/log-triage-tool →</a>
+      </article>
+      <article class="proj reveal" data-tilt>
+        <div class="proj-top"><h3>Uptime &amp; SLA Monitor</h3><span class="ci-badge">✓ CI passing</span></div>
+        <p>Endpoint monitor that records health-check history and computes SLA compliance and error budgets against a configurable target — deliberately treating slow-but-successful responses as degraded: the classic "looks fine but isn't" case.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">pytest ×4</span></div>
+        <a class="proj-link" href="https://github.com/naman-tiwari/uptime-sla-monitor" target="_blank" rel="noopener">github.com/naman-tiwari/uptime-sla-monitor →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="sec-head reveal"><span class="sec-mark">§3</span><h2>Experience</h2></div>
+    <div class="xp">
+      <div class="xp-item reveal">
+        <div class="xp-when">Apr 2024 — Present</div>
+        <h3>Independent Developer</h3>
+        <div class="xp-org">Self-directed · Bengaluru</div>
+        <p>Designed, built, and shipped three production-style services end to end — REST APIs, CI/CD automation, containerisation, observability, and monitoring — all live on GitHub with passing pipelines and automated tests.</p>
+      </div>
+      <div class="xp-item reveal">
+        <div class="xp-when">Nov 2023 — Apr 2024</div>
+        <h3>Associate Software Engineer Trainee</h3>
+        <div class="xp-org">Torry Harris Business Solutions · Bengaluru</div>
+        <p>Diagnosed where live systems quietly failed — debugging Docker and Jenkins CI/CD pipelines, tracing REST API failures, and confirming fixes held under real conditions. Zero SLA breaches during tenure.</p>
+      </div>
+      <div class="xp-item reveal">
+        <div class="xp-when">2019 — 2023</div>
+        <h3>B.Tech, Electrical &amp; Computer Engineering</h3>
+        <div class="xp-org">REVA University · Bengaluru · CGPA 8.59/10</div>
+        <p>Foundation in how software and hardware behave underneath — operating systems, networks, embedded systems — plus NSS volunteering and open-source collaboration with the 100Devs community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="sec-head reveal"><span class="sec-mark">§4</span><h2>Toolbox</h2></div>
+    <div class="skill-grid">
+      <div class="skill reveal"><h3>Languages</h3><p>Python · Java · SQL · JavaScript · Bash</p></div>
+      <div class="skill reveal"><h3>Backend &amp; APIs</h3><p>FastAPI · Spring Boot · REST · microservices · validation</p></div>
+      <div class="skill reveal"><h3>DevOps &amp; CI/CD</h3><p>Docker · Jenkins · GitHub Actions · Git · Linux</p></div>
+      <div class="skill reveal"><h3>Quality &amp; Observability</h3><p>pytest · log analysis · root-cause analysis · health checks · SLA &amp; error budgets · AI-assisted workflows (Claude Code)</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact reveal">
+      <h2>Let's build something that actually works.</h2>
+      <p>Available immediately for software engineering, application support, and AI-assisted development roles — in Bengaluru or fully remote.</p>
+      <a class="btn btn-primary" href="mailto:namantiwariofficial23@gmail.com">Email me</a>
+      <div class="contact-links">
+        <a href="https://github.com/naman-tiwari" target="_blank" rel="noopener">github.com/naman-tiwari</a>
+        <a href="https://linkedin.com/in/namantiwari23" target="_blank" rel="noopener">linkedin.com/in/namantiwari23</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>naman.dev — designed &amp; shipped by Naman Tiwari</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var term = document.getElementById('term');
+  var tinput = document.getElementById('tinput');
+
+  /* ---------- terminal engine ---------- */
+  function line(cls, html){
+    var d = document.createElement('div');
+    d.className = cls || 't-dim';
+    d.innerHTML = html;
+    term.appendChild(d);
+    term.scrollTop = term.scrollHeight;
+    return d;
+  }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  var intro = [
+    ['t-dim','&#9679; Booting portfolio v1.0 &mdash; Bengaluru, IN'],
+    ['t-dim','&#9679; Loading projects &hellip; 3 found, CI green'],
+    ['t-run','&#9679; Running self-check &hellip; 17 tests passed'],
+    ['t-ok','&#10003; System verified &mdash; ready.'],
+    ['t-dim','Type <span class="t-cmd">help</span> to explore, or just scroll.']
+  ];
+
+  var commands = {
+    help: function(){
+      line('t-dim','Available commands:');
+      line('t-cmd','&nbsp;&nbsp;projects &nbsp;&nbsp;&mdash; what I\'ve shipped');
+      line('t-cmd','&nbsp;&nbsp;skills &nbsp;&nbsp;&nbsp;&nbsp;&mdash; my toolbox');
+      line('t-cmd','&nbsp;&nbsp;experience &mdash; where I\'ve worked');
+      line('t-cmd','&nbsp;&nbsp;contact &nbsp;&nbsp;&nbsp;&mdash; reach me');
+      line('t-cmd','&nbsp;&nbsp;clear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&mdash; clean the screen');
+    },
+    projects: function(){
+      line('t-ok','3 shipped, all CI-green:');
+      line('t-dim','&nbsp;1. Incident Tracker API &mdash; FastAPI · Docker · CI/CD');
+      line('t-dim','&nbsp;2. logtriage &mdash; log analysis &amp; triage CLI');
+      line('t-dim','&nbsp;3. Uptime &amp; SLA Monitor &mdash; error budgets, Dockerised');
+      line('t-dim','Scrolling you there &hellip;');
+      setTimeout(function(){ document.getElementById('projects').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); }, 500);
+    },
+    skills: function(){
+      line('t-dim','Python · Java · FastAPI · Spring Boot · Docker · Jenkins');
+      line('t-dim','GitHub Actions · pytest · Linux · log analysis · SLA/error budgets');
+      setTimeout(function(){ document.getElementById('skills').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); }, 500);
+    },
+    experience: function(){
+      line('t-dim','Torry Harris (SWE Trainee) &rarr; Independent builds (2024&ndash;now)');
+      setTimeout(function(){ document.getElementById('experience').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); }, 500);
+    },
+    contact: function(){
+      line('t-ok','namantiwariofficial23@gmail.com');
+      line('t-dim','github.com/naman-tiwari &nbsp;&middot;&nbsp; linkedin.com/in/namantiwari23');
+      setTimeout(function(){ document.getElementById('contact').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); }, 500);
+    },
+    clear: function(){ term.innerHTML=''; }
+  };
+  commands.ls = commands.projects;
+  commands.whoami = function(){ line('t-dim','naman &mdash; engineer who verifies before shipping.'); };
+
+  var promptLine = null, buf = '';
+  function newPrompt(){
+    promptLine = line('t-line','<span class="t-prompt">naman@dev $ </span><span class="t-cmd" id="buf"></span><span class="cursor"></span>');
+    buf = '';
+  }
+  function runCmd(raw){
+    var cmd = raw.trim().toLowerCase();
+    promptLine.querySelector('.cursor').remove();
+    if(cmd === ''){ newPrompt(); return; }
+    if(commands[cmd]){ commands[cmd](); }
+    else { line('t-err','command not found: ' + esc(cmd) + ' &mdash; try <span class="t-cmd">help</span>'); }
+    newPrompt();
+  }
+  function onKey(e){
+    if(!promptLine) return;
+    if(e.key === 'Enter'){ runCmd(buf); }
+    else if(e.key === 'Backspace'){ buf = buf.slice(0,-1); }
+    else if(e.key.length === 1 && buf.length < 40){ buf += e.key; }
+    else return;
+    var b = promptLine.querySelector('#buf');
+    if(b) b.textContent = buf;
+    e.preventDefault();
+  }
+  term.addEventListener('click', function(){ tinput.focus({preventScroll:true}); });
+  term.addEventListener('keydown', onKey);
+  tinput.addEventListener('keydown', onKey);
+
+  (function boot(){
+    var i = 0;
+    function next(){
+      if(i >= intro.length){ newPrompt(); return; }
+      line(intro[i][0], intro[i][1]); i++;
+      setTimeout(next, reduced ? 0 : 430);
+    }
+    next();
+  })();
+
+  /* ---------- scroll progress + nav ---------- */
+  var prog = document.getElementById('progress'), nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    prog.style.width = pct + '%';
+    nav.classList.toggle('solid', h.scrollTop > 40);
+  }, {passive:true});
+
+  /* ---------- reveals ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ---------- count-up stats ---------- */
+  var so = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target, target = +el.getAttribute('data-count'), cur = 0;
+      if(reduced || target === 0){ el.textContent = target; so.unobserve(el); return; }
+      var step = Math.max(1, Math.round(target/24));
+      var t = setInterval(function(){
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur;
+      }, 40);
+      so.unobserve(el);
+    });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){ so.observe(el); });
+
+  /* ---------- tilt cards ---------- */
+  if(!reduced && matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('[data-tilt]').forEach(function(card){
+      card.addEventListener('mousemove', function(ev){
+        var r = card.getBoundingClientRect();
+        var x = (ev.clientX - r.left)/r.width - .5;
+        var y = (ev.clientY - r.top)/r.height - .5;
+        card.style.transform = 'perspective(800px) rotateX(' + (-y*5) + 'deg) rotateY(' + (x*6) + 'deg) translateY(-3px)';
+      });
+      card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
