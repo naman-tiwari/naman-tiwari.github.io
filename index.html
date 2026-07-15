@@ -239,8 +239,8 @@
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="stat-num"><span data-count="3">0</span></div><div class="stat-lab">services shipped</div></div>
-      <div class="stat"><div class="stat-num"><span data-count="17">0</span></div><div class="stat-lab">automated tests, all green</div></div>
+      <div class="stat"><div class="stat-num"><span data-count="4">0</span></div><div class="stat-lab">services shipped</div></div>
+      <div class="stat"><div class="stat-num"><span data-count="23">0</span></div><div class="stat-lab">automated tests, all green</div></div>
       <div class="stat"><div class="stat-num"><span data-count="0">0</span><span class="u"> breaches</span></div><div class="stat-lab">SLA record in production</div></div>
     </div>
   </div>
@@ -277,6 +277,12 @@
     <div class="sec-head reveal"><span class="sec-mark">§2</span><h2>Things I've shipped</h2></div>
     <div class="proj-grid">
       <article class="proj reveal" data-tilt>
+        <div class="proj-top"><h3>Ops Console</h3><span class="ci-badge">✓ CI passing</span></div>
+        <p>Live operations dashboard that consumes my Incident Tracker API over the network and renders an at-a-glance health view — severity counts, a HEALTHY→CRITICAL verdict, and an auto-refreshing incident table. One <em>docker compose up</em> builds and runs the entire two-service system, with graceful demo-mode fallback if the upstream dies.</p>
+        <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">Docker Compose</span><span class="tag">2-service system</span><span class="tag">pytest ×6</span></div>
+        <a class="proj-link" href="https://github.com/naman-tiwari/ops-console" target="_blank" rel="noopener">github.com/naman-tiwari/ops-console →</a>
+      </article>
+      <article class="proj reveal" data-tilt>
         <div class="proj-top"><h3>Incident Tracker API</h3><span class="ci-badge">✓ CI passing</span></div>
         <p>Production-style REST API with health &amp; readiness probes, structured JSON logging with request tracing, Prometheus metrics, a multi-stage non-root Docker build, and a CI pipeline that tests and smoke-tests the image on every push.</p>
         <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">pytest ×8</span></div>
@@ -304,7 +310,7 @@
         <div class="xp-when">Apr 2024 — Present</div>
         <h3>Independent Developer</h3>
         <div class="xp-org">Self-directed · Bengaluru</div>
-        <p>Designed, built, and shipped three production-style services end to end — REST APIs, CI/CD automation, containerisation, observability, and monitoring — all live on GitHub with passing pipelines and automated tests.</p>
+        <p>Designed, built, and shipped four production-style services end to end — REST APIs, CI/CD automation, containerisation, observability, and monitoring — all live on GitHub with passing pipelines and automated tests.</p>
       </div>
       <div class="xp-item reveal">
         <div class="xp-when">Nov 2023 — Apr 2024</div>
@@ -383,8 +389,8 @@
 
   var intro = [
     ['t-dim','&#9679; Booting portfolio v1.0 &mdash; Bengaluru, IN'],
-    ['t-dim','&#9679; Loading projects &hellip; 3 found, CI green'],
-    ['t-run','&#9679; Running self-check &hellip; 17 tests passed'],
+    ['t-dim','&#9679; Loading projects &hellip; 4 found, CI green'],
+    ['t-run','&#9679; Running self-check &hellip; 23 tests passed'],
     ['t-ok','&#10003; System verified &mdash; ready.'],
     ['t-dim','Type <span class="t-cmd">help</span> to explore, or just scroll.']
   ];
@@ -399,10 +405,11 @@
       line('t-cmd','&nbsp;&nbsp;clear &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&mdash; clean the screen');
     },
     projects: function(){
-      line('t-ok','3 shipped, all CI-green:');
-      line('t-dim','&nbsp;1. Incident Tracker API &mdash; FastAPI · Docker · CI/CD');
-      line('t-dim','&nbsp;2. logtriage &mdash; log analysis &amp; triage CLI');
-      line('t-dim','&nbsp;3. Uptime &amp; SLA Monitor &mdash; error budgets, Dockerised');
+      line('t-ok','4 shipped, all CI-green:');
+      line('t-dim','&nbsp;1. Ops Console &mdash; live dashboard, 2-service system');
+      line('t-dim','&nbsp;2. Incident Tracker API &mdash; FastAPI · Docker · CI/CD');
+      line('t-dim','&nbsp;3. logtriage &mdash; log analysis &amp; triage CLI');
+      line('t-dim','&nbsp;4. Uptime &amp; SLA Monitor &mdash; error budgets, Dockerised');
       line('t-dim','Scrolling you there &hellip;');
       setTimeout(function(){ document.getElementById('projects').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'}); }, 500);
     },
