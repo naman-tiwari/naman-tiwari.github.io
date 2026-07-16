@@ -93,6 +93,32 @@
   .btn-ghost{border:1.5px solid var(--ghost-border);color:var(--ghost-ink);background:var(--ghost-bg)}
   .btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
 
+
+  /* ── Hero 3D object ── */
+  .hero .wrap{position:relative}
+  .hero3d{position:absolute;right:8px;top:36px;width:300px;height:320px;perspective:900px;pointer-events:none;z-index:1}
+  .h3d-stage{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .25s ease-out;animation:bob 6s ease-in-out infinite}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -16px}}
+  .cube{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;transform-style:preserve-3d;animation:spin 22s linear infinite}
+  @keyframes spin{from{transform:rotateX(-18deg) rotateY(0deg)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+  .face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+        font-family:var(--mono);font-size:26px;font-weight:600;color:var(--teal);
+        background:rgba(18,165,163,.06);border:1.5px solid rgba(18,165,163,.45);border-radius:10px;
+        box-shadow:inset 0 0 34px rgba(18,165,163,.10);backdrop-filter:blur(2px)}
+  .face.ok{color:var(--verified);border-color:rgba(43,193,124,.45)}
+  .f1{transform:translateZ(75px)} .f2{transform:rotateY(180deg) translateZ(75px)}
+  .f3{transform:rotateY(90deg) translateZ(75px)} .f4{transform:rotateY(-90deg) translateZ(75px)}
+  .f5{transform:rotateX(90deg) translateZ(75px)} .f6{transform:rotateX(-90deg) translateZ(75px)}
+  .ring{position:absolute;left:50%;top:50%;width:250px;height:250px;margin:-125px 0 0 -125px;border-radius:50%;
+        border:1.5px dashed rgba(18,165,163,.35);transform:rotateX(74deg);animation:ringspin 14s linear infinite}
+  @keyframes ringspin{from{transform:rotateX(74deg) rotateZ(0)}to{transform:rotateX(74deg) rotateZ(360deg)}}
+  .ring::after{content:'';position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;
+        background:var(--verified);box-shadow:0 0 12px var(--verified)}
+  .h3d-shadow{position:absolute;left:50%;bottom:14px;width:150px;height:22px;margin-left:-75px;border-radius:50%;
+        background:radial-gradient(ellipse,rgba(18,165,163,.28),transparent 70%);filter:blur(6px);animation:shadowpulse 6s ease-in-out infinite}
+  @keyframes shadowpulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(.82);opacity:.5}}
+  @media(max-width:980px){.hero3d{display:none}}
+
   /* ── Interactive terminal ── */
   .term{position:relative;background:#0A0F1F;border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 32px 70px -24px rgba(0,0,0,.65),0 0 0 1px rgba(18,165,163,.12);overflow:hidden;max-width:780px}
   .term-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
@@ -177,8 +203,41 @@
 
   footer{padding:36px 0;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
 
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+
+  /* ── Site-wide 3D layer ── */
+  section{perspective:1100px}
+  .reveal{opacity:0;transform:translateY(26px) rotateX(9deg);transform-origin:top center;transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
+
+  /* terminal sits at a slight angle, flattens on engage */
+  .term{transform:perspective(1200px) rotateX(2.5deg) rotateY(-2deg);transition:transform .35s ease,box-shadow .35s ease}
+  .term:hover,.term:focus-within{transform:perspective(1200px) rotateX(0) rotateY(0);box-shadow:0 40px 80px -26px rgba(0,0,0,.7),0 0 0 1px rgba(18,165,163,.2)}
+
+  /* pressable buttons */
+  .btn{transform-style:preserve-3d}
+  .btn:active{transform:translateY(1px) scale(.985)}
+
+  /* universal tilt targets get smooth return */
+  [data-tilt]{transition:transform .25s ease,box-shadow .2s,border-color .2s;will-change:transform}
+
+  /* floating background geometry */
+  .floater{position:absolute;pointer-events:none;opacity:.5;z-index:0}
+  .fl-cube{width:34px;height:34px;border:1.5px solid rgba(18,165,163,.45);transform:rotateX(55deg) rotateZ(45deg);animation:flspin 16s linear infinite}
+  .fl-cube::after{content:'';position:absolute;inset:6px;border:1px dashed rgba(18,165,163,.35)}
+  @keyframes flspin{from{transform:rotateX(55deg) rotateZ(0)}to{transform:rotateX(55deg) rotateZ(360deg)}}
+  .fl-ring{width:64px;height:64px;border-radius:50%;border:1.5px dashed rgba(43,193,124,.4);animation:flbob 7s ease-in-out infinite}
+  .fl-diamond{width:26px;height:26px;border:1.5px solid rgba(18,165,163,.4);transform:rotate(45deg);animation:flbob 9s ease-in-out infinite}
+  @keyframes flbob{0%,100%{translate:0 0}50%{translate:0 -18px}}
+  section{position:relative;overflow:visible}
+  @media(max-width:760px){.floater{display:none}}
+
+  /* section headings get a whisper of depth */
+  h2{text-shadow:0 1px 0 rgba(18,165,163,.12),0 3px 8px rgba(22,35,63,.08)}
+
+  /* contact card: floating with hover lift */
+  .contact{transform-style:preserve-3d;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 24px 60px -24px rgba(11,18,38,.5)}
+  .contact:hover{transform:translateY(-4px) perspective(1200px) rotateX(1deg);box-shadow:0 34px 74px -26px rgba(11,18,38,.6)}
+
 
   @media(max-width:880px){.flow{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr 1fr;gap:12px}.stat-num{font-size:1.5rem}}
   @media(max-width:640px){
@@ -194,6 +253,8 @@
     *{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
     .orb{display:none}
+    .floater{display:none}
+    .term{transform:none}
   }
 </style>
 </head>
@@ -220,6 +281,20 @@
 <header class="hero" id="top">
   <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="grid-lines"></div>
   <div class="wrap" style="position:relative">
+    <div class="hero3d" aria-hidden="true">
+      <div class="h3d-stage" id="h3dStage">
+        <div class="cube">
+          <div class="face f1">&gt;_</div>
+          <div class="face f2 ok">&#10003;</div>
+          <div class="face f3">{ }</div>
+          <div class="face f4">API</div>
+          <div class="face f5">CI</div>
+          <div class="face f6 ok">SLA</div>
+        </div>
+        <div class="ring"></div>
+        <div class="h3d-shadow"></div>
+      </div>
+    </div>
     <p class="kicker"><span class="pulse"></span>Software Engineer · Bengaluru / Remote · Available now</p>
     <h1>I build software that <span class="accent">actually works.</span></h1>
     <p class="lede">I'm Naman Tiwari — an engineer who ships production-style services fast, then tests them the way production breaks them. APIs, CI/CD pipelines, monitoring, and the judgment to tell <em>working</em> from <em>looks-like-working</em>.</p>
@@ -239,33 +314,34 @@
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="stat-num"><span data-count="4">0</span></div><div class="stat-lab">services shipped</div></div>
-      <div class="stat"><div class="stat-num"><span data-count="23">0</span></div><div class="stat-lab">automated tests, all green</div></div>
-      <div class="stat"><div class="stat-num"><span data-count="0">0</span><span class="u"> breaches</span></div><div class="stat-lab">SLA record in production</div></div>
+      <div class="stat" data-tilt><div class="stat-num"><span data-count="4">0</span></div><div class="stat-lab">services shipped</div></div>
+      <div class="stat" data-tilt><div class="stat-num"><span data-count="23">0</span></div><div class="stat-lab">automated tests, all green</div></div>
+      <div class="stat" data-tilt><div class="stat-num"><span data-count="0">0</span><span class="u"> breaches</span></div><div class="stat-lab">SLA record in production</div></div>
     </div>
   </div>
 </header>
 
 <main>
   <section id="work" class="wrap">
+    <span class="floater fl-ring" data-speed="0.06" style="top:30px;left:-90px"></span>
     <div class="sec-head reveal"><span class="sec-mark">§1</span><h2>How I work</h2></div>
     <div class="flow">
-      <div class="flow-step reveal"><span class="flow-num">1</span>
+      <div class="flow-step reveal" data-tilt><span class="flow-num">1</span>
         <div class="flow-verb">Understand</div>
         <h3>Read the spec like a builder</h3>
         <p>What must it do, what could break, and what does "done" actually mean.</p>
       </div>
-      <div class="flow-step reveal"><span class="flow-num">2</span>
+      <div class="flow-step reveal" data-tilt><span class="flow-num">2</span>
         <div class="flow-verb">Build</div>
         <h3>Ship fast with modern leverage</h3>
         <p>APIs, containers, pipelines — built quickly using the best tools available, AI included.</p>
       </div>
-      <div class="flow-step reveal"><span class="flow-num">3</span>
+      <div class="flow-step reveal" data-tilt><span class="flow-num">3</span>
         <div class="flow-verb">Test</div>
         <h3>Break it on purpose</h3>
         <p>Failure paths, edge cases, slow responses — the places where software quietly lies.</p>
       </div>
-      <div class="flow-step reveal"><span class="flow-num">4</span>
+      <div class="flow-step reveal" data-tilt><span class="flow-num">4</span>
         <div class="flow-verb">✓ Ship</div>
         <h3>Verify end to end</h3>
         <p>Green CI, health checks, logs that tell the truth. Then — and only then — it ships.</p>
@@ -274,6 +350,7 @@
   </section>
 
   <section id="projects" class="wrap">
+    <span class="floater fl-cube" data-speed="0.09" style="top:10px;right:-70px"></span>
     <div class="sec-head reveal"><span class="sec-mark">§2</span><h2>Things I've shipped</h2></div>
     <div class="proj-grid">
       <article class="proj reveal" data-tilt>
@@ -304,6 +381,7 @@
   </section>
 
   <section id="experience" class="wrap">
+    <span class="floater fl-diamond" data-speed="0.07" style="top:60px;right:-60px"></span>
     <div class="sec-head reveal"><span class="sec-mark">§3</span><h2>Experience</h2></div>
     <div class="xp">
       <div class="xp-item reveal">
@@ -328,12 +406,13 @@
   </section>
 
   <section id="skills" class="wrap">
+    <span class="floater fl-ring" data-speed="0.05" style="bottom:0;left:-100px;width:44px;height:44px"></span>
     <div class="sec-head reveal"><span class="sec-mark">§4</span><h2>Toolbox</h2></div>
     <div class="skill-grid">
-      <div class="skill reveal"><h3>Languages</h3><p>Python · Java · SQL · JavaScript · Bash</p></div>
-      <div class="skill reveal"><h3>Backend &amp; APIs</h3><p>FastAPI · Spring Boot · REST · microservices · validation</p></div>
-      <div class="skill reveal"><h3>DevOps &amp; CI/CD</h3><p>Docker · Jenkins · GitHub Actions · Git · Linux</p></div>
-      <div class="skill reveal"><h3>Quality &amp; Observability</h3><p>pytest · log analysis · root-cause analysis · health checks · SLA &amp; error budgets · AI-assisted workflows (Claude Code)</p></div>
+      <div class="skill reveal" data-tilt><h3>Languages</h3><p>Python · Java · SQL · JavaScript · Bash</p></div>
+      <div class="skill reveal" data-tilt><h3>Backend &amp; APIs</h3><p>FastAPI · Spring Boot · REST · microservices · validation</p></div>
+      <div class="skill reveal" data-tilt><h3>DevOps &amp; CI/CD</h3><p>Docker · Jenkins · GitHub Actions · Git · Linux</p></div>
+      <div class="skill reveal" data-tilt><h3>Quality &amp; Observability</h3><p>pytest · log analysis · root-cause analysis · health checks · SLA &amp; error budgets · AI-assisted workflows (Claude Code)</p></div>
     </div>
   </section>
 
@@ -469,6 +548,19 @@
     next();
   })();
 
+  /* ---------- hero 3D parallax ---------- */
+  var stage = document.getElementById('h3dStage');
+  var heroEl = document.querySelector('.hero');
+  if(stage && heroEl && !reduced && matchMedia('(hover:hover)').matches){
+    heroEl.addEventListener('mousemove', function(ev){
+      var r = heroEl.getBoundingClientRect();
+      var x = (ev.clientX - r.left)/r.width - .5;
+      var y = (ev.clientY - r.top)/r.height - .5;
+      stage.style.transform = 'rotateY(' + (x*14) + 'deg) rotateX(' + (-y*10) + 'deg)';
+    });
+    heroEl.addEventListener('mouseleave', function(){ stage.style.transform=''; });
+  }
+
   /* ---------- scroll progress + nav ---------- */
   var prog = document.getElementById('progress'), nav = document.getElementById('nav');
   window.addEventListener('scroll', function(){
@@ -504,14 +596,26 @@
   /* ---------- tilt cards ---------- */
   if(!reduced && matchMedia('(hover:hover)').matches){
     document.querySelectorAll('[data-tilt]').forEach(function(card){
+      var big = card.classList.contains('proj');
+      var ax = big ? 6 : 4, ay = big ? 5 : 3.2;
       card.addEventListener('mousemove', function(ev){
         var r = card.getBoundingClientRect();
         var x = (ev.clientX - r.left)/r.width - .5;
         var y = (ev.clientY - r.top)/r.height - .5;
-        card.style.transform = 'perspective(800px) rotateX(' + (-y*5) + 'deg) rotateY(' + (x*6) + 'deg) translateY(-3px)';
+        card.style.transform = 'perspective(800px) rotateX(' + (-y*ay) + 'deg) rotateY(' + (x*ax) + 'deg) translateY(-3px)';
       });
       card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
     });
+
+    /* floaters drift with scroll (parallax) */
+    var floaters = Array.prototype.slice.call(document.querySelectorAll('.floater'));
+    window.addEventListener('scroll', function(){
+      var sy = window.scrollY;
+      floaters.forEach(function(f){
+        var sp = parseFloat(f.getAttribute('data-speed')) || .06;
+        f.style.marginTop = (-sy * sp) + 'px';
+      });
+    }, {passive:true});
   }
 })();
 </script>
